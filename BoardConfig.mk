@@ -20,14 +20,11 @@ include device/samsung/gta3xlwifi-common/BoardConfigCommon.mk
 LOCAL_PATH := device/samsung/gta3xlwifi
 
 # Kernel
-TARGET_KERNEL_CONFIG := gta3xlwifi_defconfig
+TARGET_KERNEL_CONFIG := exynos7885-gta3xlwifi_defconfig
 
 # OTA assertions
 TARGET_OTA_ASSERT_DEVICE := gta3xlwifi
 
-# Partitions
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0xB8000000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 
 
 # Properties
 TARGET_VENDOR_PROP += $(LOCAL_PATH)/vendor.prop
