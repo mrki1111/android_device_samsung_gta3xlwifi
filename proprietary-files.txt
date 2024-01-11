@@ -7,3 +7,26 @@
 -vendor/bin/hw/gpsd
 -vendor/lib/libwrappergps.so
 -vendor/lib/hw/gps.default.so
+
+## Audio
+
+
+## Audio FW
+
+
+## Bluetooth FW
+
+
+## Camera dependencies
+
+
+## GPS
+
+
+## RIL
+
+
+## TEEGRIS FW
+
+
+
