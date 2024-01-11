@@ -16,23 +16,22 @@
 
 LOCAL_PATH := device/samsung/gta3xlwifi
 
-# Overlays
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+# Inherit from gta3xlwifi-common
+$(call inherit-product, device/samsung/gta3xl-common/common.mk)
 
-# Ramdisk
-PRODUCT_PACKAGES += \
+
+# Call the proprietary setup
+$(call inherit-product, vendor/samsung/gta3xlwifi/gta3xlwifi-vendor.mk)
+
+
+# Setup dalvik vm configs
+$(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
+
 
 # GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/gps.xml
 
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
-
-# Inherit from gta3xlwifi-common
-$(call inherit-product, device/samsung/gta3xl-common/common.mk)
-
-# Call the proprietary setup
-$(call inherit-product, vendor/samsung/gta3xlwifi/gta3xlwifi-vendor.mk)
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
