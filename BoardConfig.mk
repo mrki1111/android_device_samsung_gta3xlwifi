@@ -134,7 +134,7 @@ TARGET_RECOVERY_DENSITY := hdpi
 # Sepolicy
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
-include device/samsung_slsi/sepolicy.mk
+include device/samsung_slsi/sepolicy/sepolicy.mk
 
 
 # System properties
