@@ -53,7 +53,7 @@ TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE := true
 BOARD_MINIMUM_DISPLAY_BRIGHTNESS := 1
 
 # Filesystem
-TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
+#TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 
 # Fingerprint
 TARGET_SEC_FP_HAS_FINGERPRINT_GESTURES := true
@@ -129,12 +129,12 @@ TARGET_RECOVERY_DEVICE_DIRS := $(DEVICE_PATH)
 TARGET_RECOVERY_DENSITY := hdpi
 
 # Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
+#TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # Sepolicy
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
-include device/samsung-slsi/sepolicy.mk
+include device/samsung_slsi/sepolicy.mk
 
 
 # System properties
