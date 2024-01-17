@@ -16,6 +16,7 @@
 
 
 LOCAL_PATH := device/samsung/gta3xlwifi
+BOARD_VENDOR := samsung
 
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
@@ -35,10 +36,8 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
-#Audio
-
-
-# Bootloader
+# Bluetooth
+BOARD_HAVE_BLUETOOTH_SLSI := true
 
 # Dexpreopt
 ifeq ($(HOST_OS),linux)
@@ -50,11 +49,17 @@ endif
 
 # Display
 TARGET_SCREEN_DENSITY := 240
-TARGET_USES_HWC2 := true
 TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE := true
+BOARD_MINIMUM_DISPLAY_BRIGHTNESS := 1
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
+
+# Fingerprint
+TARGET_SEC_FP_HAS_FINGERPRINT_GESTURES := true
+
+# FM Radio
+BOARD_HAVE_SLSI_FM := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
@@ -105,11 +110,17 @@ BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS := efs
 
 # Platform
-TARGET_BOARD_PLATFORM := $(TARGET_BOOTLOADER_BOARD_NAME)
+TARGET_BOARD_PLATFORM := universal7904
+TARGET_SOC := exynos7904
+TARGET_BOOTLOADER_BOARD_NAME := exynos7904
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+include hardware/samsung_slsi-linaro/config/BoardConfig7904.mk
 
 # Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_USES_FULL_RECOVERY_IMAGE := true
+BOARD_HAS_DOWNLOAD_MODE := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
@@ -120,6 +131,10 @@ TARGET_RECOVERY_DENSITY := hdpi
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
+# Sepolicy
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
+include device/samsung-slsi/sepolicy.mk
 
 
 # System properties
@@ -138,11 +153,22 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/vintf/frame
 TARGET_OTA_ASSERT_DEVICE := gta3xlwifi
 TARGET_OTA_ASSERT_DEVICE := gta3xl
 
+# Vendor
+TARGET_COPY_OUT_VENDOR := vendor
 
-# WiFi
+# Vibrator
+$(call soong_config_set,samsungVibratorVars,duration_amplitude,true)
 
+# VNDK
+BOARD_VNDK_VERSION := current
 
-WPA_SUPPLICANT_USE_AIDL=y
-WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY=true
-
+# Wifi
+BOARD_WLAN_DEVICE                := slsi
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
+WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 include vendor/samsung/gta3xlwifi/BoardConfigVendor.mk
