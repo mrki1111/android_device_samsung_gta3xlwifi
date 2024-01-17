@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-
+DEVICE_PATH := device/samsung/gta3xlwifi
 LOCAL_PATH := device/samsung/gta3xlwifi
 BOARD_VENDOR := samsung
 
