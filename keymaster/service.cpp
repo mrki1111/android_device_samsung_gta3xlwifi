@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.keymaster@4.0-service"
+#define LOG_TAG "android.hardware.keymaster@4.0-service.samsung"
 
 #include <android-base/logging.h>
 #include <android/hardware/keymaster/4.0/IKeymasterDevice.h>

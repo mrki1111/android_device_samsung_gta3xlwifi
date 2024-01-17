@@ -180,10 +180,6 @@ vendor/etc/vintf/manifest/android.hardware.health@2.1-samsung.xml
 vendor/lib/vendor.samsung.hardware.health@2.0.so
 
 # Keymaster
-vendor/bin/hw/android.hardware.keymaster@4.0-service
-vendor/etc/init/android.hardware.keymaster@4.0-service.rc
-vendor/lib/libkeymaster4.so
-vendor/lib/libkeymaster4_1support.so
 vendor/lib/libkeymaster_helper.so
 vendor/lib/libskeymaster4device.so
 
