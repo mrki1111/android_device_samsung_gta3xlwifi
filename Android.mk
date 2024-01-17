@@ -16,7 +16,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter gta3xlwifi, $(TARGET_DEVICE)),)
+ifneq ($(filter gta3xlwifi, gta3xl $(TARGET_DEVICE)),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
