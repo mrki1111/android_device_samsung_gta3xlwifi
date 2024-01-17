@@ -1,0 +1,68 @@
+# Copyright (c) 2013-2018,2020, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of The Linux Foundation nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#
+
+import /vendor/etc/init/hw/init.samsung.bsp.rc
+import /vendor/etc/init/hw/init.samsung.power.rc
+import /vendor/etc/init/hw/init.samsung.display.rc
+
+on early-init
+    mkdir /mnt/vendor/efs 0771 radio system
+    mkdir /mnt/vendor/persist 0771 root system
+
+on init
+    symlink /dev/block/bootdevice/by-name/steady  /dev/block/steady
+    symlink /dev/block/bootdevice/by-name/persistent  /dev/block/persistent
+
+on post-fs
+    chown system radio /sys/class/sensors/sensor_dev/flush
+
+on boot
+# Permissions for Performance
+    chown root system /sys/devices/platform/soc/5000000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz
+    chown root system /sys/devices/platform/soc/5000000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz
+    chmod 0664 /sys/devices/platform/soc/5000000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz
+    chmod 0664 /sys/devices/platform/soc/5000000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz
+    chown root system /dev/stune/top-app/schedtune.boost
+    chmod 0664 /dev/stune/top-app/schedtune.boost
+    chown system system /sys/class/input_booster/level
+    chown system system /sys/class/input_booster/head
+    chown system system /sys/class/input_booster/tail
+    chown system system /sys/class/input_booster/touchkey/level
+    chown system system /sys/class/input_booster/touchkey/freq
+    chown system system /sys/class/input_booster/touchkey/time
+    chmod 0664 /sys/class/input_booster/level
+    chmod 0664 /sys/class/input_booster/head
+    chmod 0664 /sys/class/input_booster/tail
+    chmod 0664 /sys/class/input_booster/touchkey/level
+    chmod 0664 /sys/class/input_booster/touchkey/freq
+    chmod 0664 /sys/class/input_booster/touchkey/time
+    chown root system /sys/class/devfreq/soc:qcom,cpu6-cpu-ddr-latfloor/min_freq
+    chown root system /sys/class/devfreq/soc:qcom,cpu6-cpu-ddr-latfloor/max_freq
+    chmod 0664 /sys/class/devfreq/soc:qcom,cpu6-cpu-ddr-latfloor/min_freq
+    chmod 0664 /sys/class/devfreq/soc:qcom,cpu6-cpu-ddr-latfloor/max_freq
