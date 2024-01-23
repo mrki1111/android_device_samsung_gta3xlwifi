@@ -20,10 +20,14 @@ LOCAL_PATH := device/samsung/gta3xlwifi
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
+$(call inherit-product, vendor/lineage/config/common.mk)
 
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
+
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -79,12 +83,10 @@ TARGET_SCREEN_WIDTH := 1200
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.exynos7904 \
     #android.hardware.camera.provider@2.5-service.universal7904 \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.3-service.clearkey \
     android.hardware.drm@1.3.vendor
 
 # Fastbootd
@@ -133,10 +135,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light-service.samsung
 
-# Keymaster
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.0-service \
-    android.hardware.keymaster@4.0.vendor
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -159,11 +157,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.ethernet.xml \
-    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_NFC/android.hardware.nfc.hce.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_NFC/android.hardware.nfc.hcef.xml \
-    frameworks/native/data/etc/android.hardware.nfc.uicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_NFC/android.hardware.nfc.uicc.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_NFC/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
@@ -186,15 +179,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
     $(LOCAL_PATH)/configs/permissions/platform-samsung.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/platform-samsung.xml \
 
-
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service.pixel-libperfmgr
-
-# Radio
-PRODUCT_PACKAGES += \
-    librmnetctl \
-    librilutils
 
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.4.vendor \
@@ -258,13 +245,6 @@ PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-im
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
-# Thermal
-PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0-service.samsung
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
-
 # Touch
 PRODUCT_PACKAGES += \
     vendor.lineage.touch@1.0-service.samsung
@@ -274,16 +254,13 @@ PRODUCT_PACKAGES += \
     vendor.lineage.trust@1.0-service
 
 # USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.1-service.exynos7885
 
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.samsung
 
 # VNDK
-PRODUCT_PACKAGES += \
-    libutils-v32
+
 
 # Wifi
 PRODUCT_PACKAGES += \

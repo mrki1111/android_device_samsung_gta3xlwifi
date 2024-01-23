@@ -1,7 +1,6 @@
 # Data
 /data/vendor/conn(/.*)?                      u:object_r:conn_vendor_data_file:s0
 /data/vendor/secradio(/.*)?                  u:object_r:radio_vendor_data_file:s0
-/data/nfc_log(/.*)?                          u:object_r:nfc_data_file:s0
 /data/vendor/gatekeeper(/.*)?                u:object_r:gatekeeper_vendor_data_file:s0
 
 # Dev

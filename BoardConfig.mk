@@ -22,19 +22,21 @@ BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Architecture
-TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-a
-TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_VARIANT := cortex-a73
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := cortex-a53
 
 TARGET_CPU_SMP := true
 TARGET_USES_64_BIT_BINDER := true
 
-TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-a
-TARGET_2ND_CPU_ABI := armeabi-v7a
-TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := cortex-a53
+#TARGET_2ND_ARCH := arm
+#TARGET_2ND_ARCH_VARIANT := armv8-a
+#TARGET_2ND_CPU_ABI := armeabi-v7a
+#TARGET_2ND_CPU_ABI2 := armeabi
+#TARGET_2ND_CPU_VARIANT := cortex-a53
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH_SLSI := true
@@ -71,9 +73,12 @@ BOARD_BOOTIMG_HEADER_VERSION := 2
 BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_SEPARATED_DTBO := true
-
+TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/samsung/gta3xlwifi
-TARGET_KERNEL_CONFIG := exynos7885-gta3xlwifi_defconfig
+TARGET_KERNEL_CONFIG := gta3xlwifi_defconfig
+
+KERNEL_TOOLCHAIN_arm := /home/martin/lineage/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin
+
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144
@@ -115,6 +120,7 @@ TARGET_SOC := exynos7904
 TARGET_BOOTLOADER_BOARD_NAME := exynos7904
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
+
 include hardware/samsung_slsi-linaro/config/BoardConfig7904.mk
 
 # Recovery
