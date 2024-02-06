@@ -32,11 +32,6 @@ TARGET_CPU_VARIANT_RUNTIME := cortex-a53
 TARGET_CPU_SMP := true
 TARGET_USES_64_BIT_BINDER := true
 
-#TARGET_2ND_ARCH := arm
-#TARGET_2ND_ARCH_VARIANT := armv8-a
-#TARGET_2ND_CPU_ABI := armeabi-v7a
-#TARGET_2ND_CPU_ABI2 := armeabi
-#TARGET_2ND_CPU_VARIANT := cortex-a53
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH_SLSI := true
@@ -76,16 +71,11 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/samsung/gta3xlwifi
 TARGET_KERNEL_CONFIG := gta3xlwifi_defconfig
-
-KERNEL_TOOLCHAIN_arm := /home/martin/lineage/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin
-
+TARGET_CLANG_TRIPLE := aarch64-linux-gnu-
+TARGET_CROSS_COMPILE := aarch64-linux-androidkernel-
+LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN := prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin
 
 # Partitions
-BOARD_FLASH_BLOCK_SIZE := 262144
-BOARD_SUPER_PARTITION_SIZE := 444596224
-BOARD_SUPER_PARTITION_GROUPS := samsung_dynamic_partitions
-BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := product system vendor odm
-BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := 4443865088
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_CACHEIMAGE_PARTITION_SIZE := 104857600
@@ -157,6 +147,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/vintf/frame
 
 # OTA assertions
 TARGET_OTA_ASSERT_DEVICE := gta3xlwifi
+or
 TARGET_OTA_ASSERT_DEVICE := gta3xl
 
 # Vendor
