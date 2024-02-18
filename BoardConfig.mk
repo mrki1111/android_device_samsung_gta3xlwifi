@@ -146,8 +146,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/vintf/frame
 
 # OTA assertions
 TARGET_OTA_ASSERT_DEVICE := gta3xlwifi
-or
-TARGET_OTA_ASSERT_DEVICE := gta3xl
+
 
 # Vendor
 TARGET_COPY_OUT_VENDOR := vendor
